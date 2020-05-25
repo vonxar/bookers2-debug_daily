@@ -1,0 +1,21 @@
+<div class="container">
+<div class="row">
+<h1><%= @room.name %></h1>
+
+<h4>参加者</h4>
+<% @user_rooms.each do |e| %>
+  <%= link_to e.user.name, user_path(e.user_id) %>
+<% end %>
+
+<h1>Chat room</h1>
+<form>
+  <label>Say something:</label><br>
+  <%# 編集 %>
+  <input type="text" id="chat-input" data-behavior="room_speaker" data-user="<%= current_user.id %>" data-room="<%= @room.id %>">
+</form>
+
+<div id="chats" data-room_id="<%= @room.id %>">
+  <%= render partial: 'chats/chat', chats: @chats %>
+</div>
+</div>
+</div>
